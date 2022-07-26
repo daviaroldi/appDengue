@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct DengueFocus {
     let id: Int
     let address: String
     let registrationDate: Date
     let description: String
+    let pointLocation: CLLocation
 }

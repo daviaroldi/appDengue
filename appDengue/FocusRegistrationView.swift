@@ -9,14 +9,19 @@ import SwiftUI
 import CoreLocation
 
 struct FocusRegistrationView: View {
-    @State private var focusPointAddress: String = "teste"
+    @Binding var focusPoints: [Pin]
     
-    @State private var isAddressFocused: Bool = false
     private var currentDate: Date = Date()
     private var loggedAgent: Agent = Agent(47)
-    @Binding private var focusPoints: [Pin]
     
-    var body: some View {
+    @State private var focusPointAddress: String = ""
+    @State private var focusPointDescription: String = ""
+
+    init(focusPoints: Binding<[Pin]>) {
+        self._focusPoints = focusPoints
+    }
+    
+    public var body: some View {
         VStack(alignment: .leading) {
             StaticTextView(
                 label: "Registro do agente",
@@ -73,6 +78,7 @@ struct FocusRegistrationView: View {
                 
                 Button {
                     print("Button 1")
+                    
                 } label: {
                     Text("Salvar")
                         .fontWeight(.bold)
@@ -99,6 +105,7 @@ struct FocusRegistrationView: View {
 
 struct FocusRegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        FocusRegistrationView()
+        let focused: [Pin] = []
+        FocusRegistrationView(focusPoints: Binding.constant(focused))
     }
 }

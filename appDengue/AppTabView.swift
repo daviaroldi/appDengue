@@ -22,12 +22,12 @@ struct AppTabView: View {
                 Label("Map", systemImage: "map.fill")
             }
 
-            NavigationView {
-                FocusRegistrationView()
-            }
-            .tabItem {
-                Label("Register", systemImage: "ladybug.fill")
-            }
+//            NavigationView {
+//                FocusRegistrationView(focusPoints: $focusPoints)
+//            }
+//            .tabItem {
+//                Label("Register", systemImage: "ladybug.fill")
+//            }
             
             NavigationView {
                 OversightGuideView()
