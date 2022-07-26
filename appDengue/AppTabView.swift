@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct AppTabView: View {
+    @State var focusPoints: [Pin] = [
+        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587)),
+        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
+    ]
     var body: some View {
         TabView {
             NavigationView {
-                DengueMapView()
+                DengueMapView(focusPoints: $focusPoints)
             }
             .tabItem {
                 Label("Map", systemImage: "map.fill")
