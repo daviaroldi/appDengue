@@ -13,6 +13,7 @@ struct AppTabView: View {
         Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587)),
         Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
     ]
+    
     var body: some View {
         TabView {
             NavigationView {

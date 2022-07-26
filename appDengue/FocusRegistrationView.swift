@@ -10,6 +10,7 @@ import CoreLocation
 
 struct FocusRegistrationView: View {
     @Binding var focusPoints: [Pin]
+    //var currentLocation: CLLocation
     
     private var currentDate: Date = Date()
     private var loggedAgent: Agent = Agent(47)
@@ -19,6 +20,7 @@ struct FocusRegistrationView: View {
 
     init(focusPoints: Binding<[Pin]>) {
         self._focusPoints = focusPoints
+        //self.currentLocation = currentLocation
     }
     
     public var body: some View {
@@ -78,7 +80,7 @@ struct FocusRegistrationView: View {
                 
                 Button {
                     print("Button 1")
-                    
+                    //focusPoints.append(Pin(location: currentLocation))
                 } label: {
                     Text("Salvar")
                         .fontWeight(.bold)
