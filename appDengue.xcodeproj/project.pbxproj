@@ -18,6 +18,8 @@
 		26C19D4628901089009E8638 /* DengueFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C19D4528901089009E8638 /* DengueFocus.swift */; };
 		26C19D4828901C0C009E8638 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C19D4728901C0C009E8638 /* Agent.swift */; };
 		26C19D4A28901EFA009E8638 /* StaticTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C19D4928901EFA009E8638 /* StaticTextView.swift */; };
+		668AB3502890266B00DBBD45 /* CustomLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668AB34F2890266B00DBBD45 /* CustomLocationManager.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		26C19D4528901089009E8638 /* DengueFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DengueFocus.swift; sourceTree = "<group>"; };
 		26C19D4728901C0C009E8638 /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		26C19D4928901EFA009E8638 /* StaticTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTextView.swift; sourceTree = "<group>"; };
+		668AB34E28901F5300DBBD45 /* new.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = new.gpx; path = ../../../Downloads/new.gpx; sourceTree = "<group>"; };
+		668AB34F2890266B00DBBD45 /* CustomLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +54,7 @@
 		2699C22B288ED03600216EC3 = {
 			isa = PBXGroup;
 			children = (
+				668AB34E28901F5300DBBD45 /* new.gpx */,
 				2699C236288ED03700216EC3 /* appDengue */,
 				2699C235288ED03700216EC3 /* Products */,
 			);
@@ -68,6 +73,7 @@
 			children = (
 				2699C237288ED03700216EC3 /* appDengueApp.swift */,
 				262A08BF288EE1F000B94DC2 /* AppTabView.swift */,
+				668AB34F2890266B00DBBD45 /* CustomLocationManager.swift */,
 				262A08C3288EE26C00B94DC2 /* DengueMapView.swift */,
 				262A08BD288ED40E00B94DC2 /* FocusRegistrationView.swift */,
 				262A08C1288EE25200B94DC2 /* OversightGuideView.swift */,
@@ -159,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				668AB3502890266B00DBBD45 /* CustomLocationManager.swift in Sources */,
 				2699C23A288ED03700216EC3 /* ContentView.swift in Sources */,
 				2699C238288ED03700216EC3 /* appDengueApp.swift in Sources */,
 				26C19D4628901089009E8638 /* DengueFocus.swift in Sources */,
