@@ -15,6 +15,9 @@
 		2699C23A288ED03700216EC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2699C239288ED03700216EC3 /* ContentView.swift */; };
 		2699C23C288ED03800216EC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2699C23B288ED03800216EC3 /* Assets.xcassets */; };
 		2699C23F288ED03800216EC3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2699C23E288ED03800216EC3 /* Preview Assets.xcassets */; };
+		26C19D4628901089009E8638 /* DengueFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C19D4528901089009E8638 /* DengueFocus.swift */; };
+		26C19D4828901C0C009E8638 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C19D4728901C0C009E8638 /* Agent.swift */; };
+		26C19D4A28901EFA009E8638 /* StaticTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C19D4928901EFA009E8638 /* StaticTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		2699C23B288ED03800216EC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2699C23E288ED03800216EC3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2699C240288ED03800216EC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26C19D4528901089009E8638 /* DengueFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DengueFocus.swift; sourceTree = "<group>"; };
+		26C19D4728901C0C009E8638 /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
+		26C19D4928901EFA009E8638 /* StaticTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,9 +72,12 @@
 				262A08BD288ED40E00B94DC2 /* FocusRegistrationView.swift */,
 				262A08C1288EE25200B94DC2 /* OversightGuideView.swift */,
 				2699C239288ED03700216EC3 /* ContentView.swift */,
+				26C19D4528901089009E8638 /* DengueFocus.swift */,
 				2699C23B288ED03800216EC3 /* Assets.xcassets */,
 				2699C240288ED03800216EC3 /* Info.plist */,
 				2699C23D288ED03800216EC3 /* Preview Content */,
+				26C19D4728901C0C009E8638 /* Agent.swift */,
+				26C19D4928901EFA009E8638 /* StaticTextView.swift */,
 			);
 			path = appDengue;
 			sourceTree = "<group>";
@@ -152,9 +161,12 @@
 			files = (
 				2699C23A288ED03700216EC3 /* ContentView.swift in Sources */,
 				2699C238288ED03700216EC3 /* appDengueApp.swift in Sources */,
+				26C19D4628901089009E8638 /* DengueFocus.swift in Sources */,
 				262A08C0288EE1F000B94DC2 /* AppTabView.swift in Sources */,
 				262A08C4288EE26C00B94DC2 /* DengueMapView.swift in Sources */,
+				26C19D4828901C0C009E8638 /* Agent.swift in Sources */,
 				262A08C2288EE25200B94DC2 /* OversightGuideView.swift in Sources */,
+				26C19D4A28901EFA009E8638 /* StaticTextView.swift in Sources */,
 				262A08BE288ED40E00B94DC2 /* FocusRegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

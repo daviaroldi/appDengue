@@ -6,31 +6,94 @@
 //
 
 import SwiftUI
-import MapKit
 import CoreLocation
 
 struct FocusRegistrationView: View {
-    @State private var mapRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 51.5, longitude: -0.12),
-        span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
-    
     @State private var focusPointAddress: String = "teste"
+    
     @State private var isAddressFocused: Bool = false
+    private var currentDate: Date = Date()
+    private var loggedAgent: Agent = Agent(47)
+    @Binding private var focusPoints: [Pin]
     
     var body: some View {
-        VStack() {
-            Text("Passo 1: Endereço")
+        VStack(alignment: .leading) {
+            StaticTextView(
+                label: "Registro do agente",
+                text: loggedAgent.id.description,
+                placeholder: "Id")
             
-            TextField("Passo 1: Endereço", text: $focusPointAddress)
+            StaticTextView(
+                label: "Data de registro",
+                text: currentDate.description,
+                placeholder: "Data atual")
             
-            TextField("Data De Registro", text: $focusPointAddress)
-                .disabled(true)
-                .disableAutocorrection(true)
+            Group {
+                Text("Passo 1:")
+                    .foregroundColor(.orange)
+                    .font(.body)
+                    .fontWeight(.bold)
+                
+                Text("Adicione o endereço")
+                    .foregroundColor(Color(red: 190/255, green: 190/255, blue: 190/255))
+                    .font(.body)
+                    .fontWeight(.bold)
+            }
+            
+            TextField("Endereço do foco", text: $focusPointAddress)
+                .foregroundColor(Color(red: 150/255, green: 150/255, blue: 150/255))
+                .font(.callout)
+            
+            Text("Passo 2:")
+                .foregroundColor(.orange)
+                .font(.body)
+                .fontWeight(.bold)
+            
+            Text("Adicione uma descrição")
+                .foregroundColor(Color(red: 190/255, green: 190/255, blue: 190/255))
+                .font(.body)
+                .fontWeight(.bold)
+            
+
+            
+            TextEditor(text: $focusPointAddress)
+                .font(.callout)
+                .foregroundColor(Color(red: 150/255, green: 150/255, blue: 150/255))
+                .frame(height: 230)
+                .lineLimit(50)
+                .multilineTextAlignment(.leading)
+                .padding(4)
+                .overlay(RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.secondary).opacity(0.2))
+            
+            Spacer()
+            
+            HStack(alignment: .center) {
+                Spacer()
+                
+                Button {
+                    print("Button 1")
+                } label: {
+                    Text("Salvar")
+                        .fontWeight(.bold)
+                        .foregroundColor(.orange)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .frame(maxWidth: 100)
+                        .background(
+                            Capsule()
+                                .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
+                        )
+                        .font(.headline)
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+            
+            Spacer()
         }
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+        .padding(EdgeInsets(top: 10, leading: 17, bottom: 5, trailing: 17))
         .navigationTitle("Registrar foco")
-//        VStack {
-//            Map(coordinateRegion: $mapRegion)
-//        }
     }
 }
 
