@@ -35,15 +35,21 @@ struct FocusRegistrationView: View {
 //    @Environment(\.location2) var location2
     
     @Binding var focusPoints: [Pin]
+    @Binding var isViewActive: Bool
     
     private var currentDate: Date = Date()
     private var loggedAgent: Agent = Agent(47)
+    private let dateFormatter = DateFormatter()
+    private var formattedDate: String = ""
     
     @State private var focusPointAddress: String = ""
     @State private var focusPointDescription: String = ""
 
-    init(focusPoints: Binding<[Pin]>) {
+    init(focusPoints: Binding<[Pin]>, isViewActive: Binding<Bool>) {
         self._focusPoints = focusPoints
+        self._isViewActive = isViewActive
+        
+        self.dateFormatter.dateFormat = "dd/MM/yyyy - HH:mm"
     }
     
     public var body: some View {
@@ -55,7 +61,7 @@ struct FocusRegistrationView: View {
             
             StaticTextView(
                 label: "Data de registro",
-                text: currentDate.description,
+                text: dateFormatter.string(from: currentDate),
                 placeholder: "Data atual")
 //                .environment(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Key Path@*/\.sizeCategory/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.extraExtraLarge/*@END_MENU_TOKEN@*/)
             
@@ -87,7 +93,7 @@ struct FocusRegistrationView: View {
             
 
             
-            TextEditor(text: $focusPointAddress)
+            TextEditor(text: $focusPointDescription)
                 .font(.callout)
                 .foregroundColor(Color(red: 150/255, green: 150/255, blue: 150/255))
                 .frame(height: 230)
@@ -101,15 +107,15 @@ struct FocusRegistrationView: View {
             
             HStack(alignment: .center) {
                 Spacer()
-                
+            
                 Button {
-                    print("Button 1 -> \(managerDelegate.location!.coordinate)")
                     //let newFocus = DengueFocus(1, focusPointAddress, currentDate, focusPointDescription, currentLocation)
                     if(managerDelegate.location == nil) {
                         return
                     }
-
+                    
                     focusPoints.append(Pin(location: managerDelegate.location!))
+                    isViewActive.toggle()
                 } label: {
                     Text("Salvar")
                         .fontWeight(.bold)
@@ -134,9 +140,9 @@ struct FocusRegistrationView: View {
     }
 }
 
-struct FocusRegistrationView_Previews: PreviewProvider {
-    static var previews: some View {
-        let focused: [Pin] = []
-        FocusRegistrationView(focusPoints: Binding.constant(focused))
-    }
-}
+//struct FocusRegistrationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let focused: [Pin] = []
+//        FocusRegistrationView(focusPoints: Binding.constant(focused))
+//    }
+//}

@@ -16,6 +16,8 @@ struct DengueMapView: View {
 
     @StateObject var managerDelegate = locationDelegate()
     
+    @State var isRegistrationViewActive: Bool = false
+    
     @Binding var focusPoints : [Pin]
 
     var body: some View {
@@ -33,8 +35,9 @@ struct DengueMapView: View {
                 }.edgesIgnoringSafeArea(.all)
                 
                 NavigationLink(
-                    destination: FocusRegistrationView(focusPoints: self._focusPoints)
+                    destination: FocusRegistrationView(focusPoints: self._focusPoints, isViewActive: $isRegistrationViewActive)
                         .environmentObject(managerDelegate),
+                    isActive: $isRegistrationViewActive,
                     label: {
                         Text("Registrar Foco")
                     })
@@ -44,6 +47,11 @@ struct DengueMapView: View {
         }.onAppear{
             manager.delegate = managerDelegate
         }
+//        .navigationBarItems(trailing: Button {
+//            self.isRegistrationViewActive.toggle()
+//        } label: {
+//            Text("Registrar Foco")
+//        })
     }
 }
 
