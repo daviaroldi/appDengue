@@ -8,9 +8,33 @@
 import SwiftUI
 import CoreLocation
 
+//IF YOU WANT TO HAVE MORE THAN ONE INSTANCE OF A CLASS IN AN ENVIRONMENT, YOU NEED TO SPECIFY A KEYPATH
+//struct Location1: EnvironmentKey {
+//    static let defaultValue: locationDelegate = .init()
+//}
+//
+//struct Location2: EnvironmentKey {
+//    static let defaultValue: locationDelegate = .init()
+//}
+//
+//extension EnvironmentValues {
+//    var location1: locationDelegate {
+//        get { self[Location1.self] }
+//        set { self[Location1.self] = newValue }
+//    }
+//
+//    var location2: locationDelegate {
+//        get { self[Location2.self] }
+//        set { self[Location2.self] = newValue }
+//    }
+//}
+
 struct FocusRegistrationView: View {
+    @EnvironmentObject var managerDelegate: locationDelegate
+//    @Environment(\.location1) var location1
+//    @Environment(\.location2) var location2
+    
     @Binding var focusPoints: [Pin]
-    //var currentLocation: CLLocation
     
     private var currentDate: Date = Date()
     private var loggedAgent: Agent = Agent(47)
@@ -20,7 +44,6 @@ struct FocusRegistrationView: View {
 
     init(focusPoints: Binding<[Pin]>) {
         self._focusPoints = focusPoints
-        //self.currentLocation = currentLocation
     }
     
     public var body: some View {
@@ -34,6 +57,7 @@ struct FocusRegistrationView: View {
                 label: "Data de registro",
                 text: currentDate.description,
                 placeholder: "Data atual")
+//                .environment(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Key Path@*/\.sizeCategory/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.extraExtraLarge/*@END_MENU_TOKEN@*/)
             
             Group {
                 Text("Passo 1:")
@@ -79,8 +103,13 @@ struct FocusRegistrationView: View {
                 Spacer()
                 
                 Button {
-                    print("Button 1")
-                    //focusPoints.append(Pin(location: currentLocation))
+                    print("Button 1 -> \(managerDelegate.location!.coordinate)")
+                    //let newFocus = DengueFocus(1, focusPointAddress, currentDate, focusPointDescription, currentLocation)
+                    if(managerDelegate.location == nil) {
+                        return
+                    }
+
+                    focusPoints.append(Pin(location: managerDelegate.location!))
                 } label: {
                     Text("Salvar")
                         .fontWeight(.bold)
