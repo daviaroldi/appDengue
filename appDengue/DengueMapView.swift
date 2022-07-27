@@ -20,16 +20,26 @@ struct DengueMapView: View {
 
     var body: some View {
         VStack{
-            Map(coordinateRegion: $managerDelegate.region, interactionModes: .all, showsUserLocation: true, annotationItems: focusPoints) { focusPoint in
-                MapAnnotation(coordinate: focusPoint.location.coordinate) {
-                    Circle()
-                        .stroke(Color.red, lineWidth: 1)
-                        .background(Color.red.opacity(0.5))
-                        .frame(width: 44, height: 44)
-                        .clipShape(Circle())
-                }
+            ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
+                Map(coordinateRegion: $managerDelegate.region, interactionModes: .all, showsUserLocation: true, annotationItems: focusPoints) { focusPoint in
+                    MapAnnotation(coordinate: focusPoint.location.coordinate) {
+                        Circle()
+                            .stroke(Color.red, lineWidth: 1)
+                            .background(Color.red.opacity(0.5))
+                            .frame(width: 44, height: 44)
+                            .clipShape(Circle())
+                    }
 
-            }.edgesIgnoringSafeArea(.all)
+                }.edgesIgnoringSafeArea(.all)
+                
+                Button {
+                    print("Abre foco")
+                } label: {
+                    Image(systemName: "add")
+                    Text("Adicionar Foco")
+                }
+            }
+
         }.onAppear{
             manager.delegate = managerDelegate
         }
