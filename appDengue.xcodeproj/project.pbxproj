@@ -18,6 +18,7 @@
 		26C19D4628901089009E8638 /* DengueFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C19D4528901089009E8638 /* DengueFocus.swift */; };
 		26C19D4828901C0C009E8638 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C19D4728901C0C009E8638 /* Agent.swift */; };
 		26C19D4A28901EFA009E8638 /* StaticTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C19D4928901EFA009E8638 /* StaticTextView.swift */; };
+		612002C3289171E600D99DD8 /* OversigthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612002C2289171E600D99DD8 /* OversigthModel.swift */; };
 		668AB3502890266B00DBBD45 /* CustomLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668AB34F2890266B00DBBD45 /* CustomLocationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		26C19D4528901089009E8638 /* DengueFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DengueFocus.swift; sourceTree = "<group>"; };
 		26C19D4728901C0C009E8638 /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		26C19D4928901EFA009E8638 /* StaticTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTextView.swift; sourceTree = "<group>"; };
+		612002C2289171E600D99DD8 /* OversigthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OversigthModel.swift; sourceTree = "<group>"; };
 		668AB34F2890266B00DBBD45 /* CustomLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +76,7 @@
 				262A08C3288EE26C00B94DC2 /* DengueMapView.swift */,
 				262A08BD288ED40E00B94DC2 /* FocusRegistrationView.swift */,
 				262A08C1288EE25200B94DC2 /* OversightGuideView.swift */,
+				612002C2289171E600D99DD8 /* OversigthModel.swift */,
 				2699C239288ED03700216EC3 /* ContentView.swift */,
 				26C19D4928901EFA009E8638 /* StaticTextView.swift */,
 				2699C23B288ED03800216EC3 /* Assets.xcassets */,
@@ -168,6 +171,7 @@
 				26C19D4628901089009E8638 /* DengueFocus.swift in Sources */,
 				262A08C0288EE1F000B94DC2 /* AppTabView.swift in Sources */,
 				262A08C4288EE26C00B94DC2 /* DengueMapView.swift in Sources */,
+				612002C3289171E600D99DD8 /* OversigthModel.swift in Sources */,
 				26C19D4828901C0C009E8638 /* Agent.swift in Sources */,
 				262A08C2288EE25200B94DC2 /* OversightGuideView.swift in Sources */,
 				26C19D4A28901EFA009E8638 /* StaticTextView.swift in Sources */,
