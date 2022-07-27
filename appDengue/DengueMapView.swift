@@ -32,12 +32,13 @@ struct DengueMapView: View {
 
                 }.edgesIgnoringSafeArea(.all)
                 
-                Button {
-                    print("Abre foco")
-                } label: {
-                    Image(systemName: "add")
-                    Text("Adicionar Foco")
-                }
+                NavigationLink(
+                    destination: FocusRegistrationView(focusPoints: self._focusPoints)
+                        .environmentObject(managerDelegate),
+                    label: {
+                        Text("Registrar Foco")
+                    })
+
             }
 
         }.onAppear{
@@ -46,12 +47,12 @@ struct DengueMapView: View {
     }
 }
 
-struct DengueMapView_Previews: PreviewProvider {
-    static var focusPoints : [Pin] = [
-        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587)),
-        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
-    ]
-    static var previews: some View {
-        DengueMapView(focusPoints: .constant(focusPoints))
-    }
-}
+//struct DengueMapView_Previews: PreviewProvider {
+//    static var focusPoints : [Pin] = [
+//        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587)),
+//        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
+//    ]
+//    static var previews: some View {
+//        DengueMapView(focusPoints: .constant(focusPoints))
+//    }
+//}

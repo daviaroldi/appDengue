@@ -18,17 +18,11 @@ struct AppTabView: View {
         TabView {
             NavigationView {
                 DengueMapView(focusPoints: $focusPoints)
+                    .environmentObject(locationDelegate())
             }
             .tabItem {
                 Label("Map", systemImage: "map.fill")
             }
-
-//            NavigationView {
-//                FocusRegistrationView(focusPoints: $focusPoints)
-//            }
-//            .tabItem {
-//                Label("Register", systemImage: "ladybug.fill")
-//            }
             
             NavigationView {
                 OversightGuideView()
