@@ -26,7 +26,7 @@ struct AppTabView: View {
                 FocusRegistrationView()
             }
             .tabItem {
-                Label("Register", systemImage: "ladybug.fill")
+                Label("Register", systemImage: "pencil.circle.fill")
             }
             
             NavigationView {
