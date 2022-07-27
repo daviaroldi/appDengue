@@ -37,8 +37,14 @@ struct DengueMapView: View {
                         .environmentObject(managerDelegate),
                     label: {
                         Text("Registrar Foco")
+                            .font(.system(size:16))
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.white)
+                            .padding(10)
+                            .background(Color.orange)
+                                .clipShape(Capsule())
                     })
-
+                    .padding()
             }
 
         }.onAppear{
@@ -47,12 +53,12 @@ struct DengueMapView: View {
     }
 }
 
-//struct DengueMapView_Previews: PreviewProvider {
-//    static var focusPoints : [Pin] = [
-//        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587)),
-//        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
-//    ]
-//    static var previews: some View {
-//        DengueMapView(focusPoints: .constant(focusPoints))
-//    }
-//}
+struct DengueMapView_Previews: PreviewProvider {
+    static var focusPoints : [Pin] = [
+        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587)),
+        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
+    ]
+    static var previews: some View {
+        DengueMapView(focusPoints: .constant(focusPoints))
+    }
+}

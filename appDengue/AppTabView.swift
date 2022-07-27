@@ -14,13 +14,22 @@ struct AppTabView: View {
         Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
     ]
     
+//    init() {
+////        UITabBar.appearance().barTintColor = .red
+//        
+////        let appearance = UITabBarAppearance()
+////        appearance.configureWithDefaultBackground()
+////        appearance.backgroundColor = .black
+////        UITabBar.appearance().standardAppearance = appearance
+//    }
+    
     var body: some View {
         TabView {
             NavigationView {
                 DengueMapView(focusPoints: $focusPoints)
             }
             .tabItem {
-                Label("Map", systemImage: "map.fill")
+                Label("Mapa", systemImage: "map.fill")
             }
             
             NavigationView {
@@ -30,11 +39,13 @@ struct AppTabView: View {
                 Label("Guide", systemImage: "newspaper.fill")
             }
         }
+        .accentColor(.orange)
     }
 }
 
 struct AppTabView_Previews: PreviewProvider {
     static var previews: some View {
         AppTabView()
+            .environment(\.colorScheme, .dark)
     }
 }
