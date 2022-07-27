@@ -31,9 +31,9 @@ struct OversightGuideView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 90, height: 90)
-                            .background(
-                                Color.white
-                            )
+//                            .background(
+//                                Color.white
+//                            )
                             .clipShape(
                                 RoundedRectangle(cornerRadius: 20)
                             )
@@ -42,7 +42,7 @@ struct OversightGuideView: View {
                             Text(oversight.name)
                                 .foregroundColor(.orange)
                             Text(oversight.description)
-                                .foregroundColor(.gray)
+                                .foregroundColor(Color(UIColor.label))
                         }
                     }
                     Divider()
@@ -62,5 +62,6 @@ struct OversightGuideView_Previews: PreviewProvider {
         NavigationView{
             OversightGuideView()
         }
+        .environment(\.colorScheme, .dark)
     }
 }

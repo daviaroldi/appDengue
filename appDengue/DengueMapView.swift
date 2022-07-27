@@ -9,23 +9,6 @@ import SwiftUI
 import MapKit
 import CoreLocation
 
-//class Model: ObservableObject {
-//    @Published var selection: Int? {
-//        willSet {
-//            if let nv = newValue {
-//                selected = nv
-//                willChangeSelection?(selected)
-//            }
-//        }
-//    }
-//    var selected: Int = 0
-//    let willChangeSelection: ((Int) -> Void)?
-//    init( onSelection: ((Int)->Void)? ) {
-//        willChangeSelection = onSelection
-//        selection = 1
-//    }
-//}
-
 struct DengueMapView: View {
     @State var tracking : MapUserTrackingMode = .follow
 
@@ -33,13 +16,11 @@ struct DengueMapView: View {
 
     @StateObject var managerDelegate = locationDelegate()
     
+    @State var isRegistrationViewActive: Bool = false
+    
     @Binding var focusPoints : [Pin]
     
-//    @ObservedObject var model = Model { i in
-//        if managerDelegate.location == nil {
-//
-//        }
-//    }
+    @State var isLocationDisable: Bool = false
 
     var body: some View {
         VStack{
@@ -54,23 +35,26 @@ struct DengueMapView: View {
                     }
 
                 }.edgesIgnoringSafeArea(.all)
-                
-//                NavigationLink(
-//                    destination: FocusRegistrationView(focusPoints: self._focusPoints)
-//                                    .environmentObject(managerDelegate),
-//                    tag: 1,
-//                    selection: $model.selection) {
-//                    Text("Registrar Foco")
-//                }
-//                let _test = managerDelegate.location == nil
-//                NavigationLink(
-//                    destination: defineDestination(),
-//                    isActive: ,
-//                    label: {
-//                        
-//                    }
-//                )
 
+                Button(action: {
+                    isLocationDisable = managerDelegate.location == nil
+                    isRegistrationViewActive = !isLocationDisable
+                }, label: {
+                    Text("Registrar Foco")
+                        .font(.system(size:16))
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.white)
+                        .padding(10)
+                        .background(Color.orange)
+                            .clipShape(Capsule())
+                })
+                .padding()
+                .alert(isPresented: $isLocationDisable, content: {
+                    Alert(title: Text("Coordenadas geaograficas não disponvíveis\nPor favor tente reposicionar a localização"))
+                })
+
+                NavigationLink("", destination: FocusRegistrationView(focusPoints: self._focusPoints, isViewActive: $isRegistrationViewActive)
+                                .environmentObject(managerDelegate), isActive: $isRegistrationViewActive)
             }
 
         }.onAppear{
@@ -78,23 +62,23 @@ struct DengueMapView: View {
         }
     }
     
-    @ViewBuilder
-    func defineDestination() -> some View {
-        if managerDelegate.location == nil {
-            EmptyView()
-        } else {
-            FocusRegistrationView(focusPoints: self._focusPoints)
-                        .environmentObject(managerDelegate)
-        }
-    }
+//    @ViewBuilder
+//    func defineDestination() -> some View {
+//        if !isLocationDisable {
+////            EmptyView()
+////        } else {
+//            FocusRegistrationView(focusPoints: self._focusPoints, isViewActive: $isRegistrationViewActive)
+//                .environmentObject(managerDelegate)
+//        }
+//    }
 }
 
-//struct DengueMapView_Previews: PreviewProvider {
-//    static var focusPoints : [Pin] = [
-//        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587)),
-//        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
-//    ]
-//    static var previews: some View {
-//        DengueMapView(focusPoints: .constant(focusPoints))
-//    }
-//}
+struct DengueMapView_Previews: PreviewProvider {
+    static var focusPoints : [Pin] = [
+        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587)),
+        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
+    ]
+    static var previews: some View {
+        DengueMapView(focusPoints: .constant(focusPoints))
+    }
+}
