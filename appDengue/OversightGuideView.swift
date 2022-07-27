@@ -17,9 +17,10 @@ struct OversightGuideView: View {
                 HStack (spacing: 16) {
                     Image("pneu")
                         .resizable()
-                        .frame(width: 100, height: 100)
+                        .scaledToFit()
+                        .frame(width: 90, height: 90)
                         .background(
-                            Color(red: 230/255, green: 230/255, blue: 230/255)
+                            Color.white
                         )
                         .clipShape(
                             RoundedRectangle(cornerRadius: 20)
@@ -36,10 +37,10 @@ struct OversightGuideView: View {
                 Divider()
                 
                 HStack (spacing: 16) {
-                    Image("planta")
+                    Image("vaso")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 100)
+                        .frame(width: 90, height: 90)
                         .background(
                             Color.white
                         )
@@ -58,7 +59,7 @@ struct OversightGuideView: View {
                     Image("garrafa")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 100)
+                        .frame(width: 90, height: 90)
                         .background(
                             Color.white
                         )
@@ -76,9 +77,10 @@ struct OversightGuideView: View {
                 HStack (spacing: 16) {
                     Image("poco")
                         .resizable()
-                        .frame(width: 100, height: 100)
+                        .scaledToFit()
+                        .frame(width: 90, height: 90)
                         .background(
-                            Color(red: 230/255, green: 230/255, blue: 230/255)
+                            Color.white
                         )
                         .clipShape(
                             RoundedRectangle(cornerRadius: 20)
@@ -94,9 +96,10 @@ struct OversightGuideView: View {
                 HStack (spacing: 16) {
                     Image("grama")
                         .resizable()
-                        .frame(width: 100, height: 100)
+                        .scaledToFit()
+                        .frame(width: 90, height: 90)
                         .background(
-                            Color(red: 230/255, green: 230/255, blue: 230/255)
+                            Color.white
                         )
                         .clipShape(
                             RoundedRectangle(cornerRadius: 20)
@@ -110,11 +113,12 @@ struct OversightGuideView: View {
                     }
                 }
                 HStack (spacing: 16) {
-                    Image("grama")
+                    Image("calha")
                         .resizable()
-                        .frame(width: 100, height: 100)
+                        .scaledToFit()
+                        .frame(width: 90, height: 90)
                         .background(
-                            Color(red: 230/255, green: 230/255, blue: 230/255)
+                            Color.white
                         )
                         .clipShape(
                             RoundedRectangle(cornerRadius: 20)
