@@ -43,7 +43,7 @@ struct DengueMapView: View {
                             .font(.system(size:16))
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .foregroundColor(.white)
-                            .padding(10)
+                            .padding(15)
                             .background(Color.orange)
                                 .clipShape(Capsule())
                     })
