@@ -80,7 +80,10 @@ struct FocusRegistrationView: View {
             TextField("Endereço do foco", text: $focusPointAddress)
                 .foregroundColor(Color(red: 150/255, green: 150/255, blue: 150/255))
                 .font(.callout)
-            
+                .padding(.all, 6)
+                .overlay(RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.secondary).opacity(1))
+                
             Text("Passo 2:")
                 .foregroundColor(.orange)
                 .font(.body)
@@ -101,7 +104,7 @@ struct FocusRegistrationView: View {
                 .multilineTextAlignment(.leading)
                 .padding(4)
                 .overlay(RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.secondary).opacity(0.2))
+                    .stroke(Color.secondary).opacity(1))
             
             Spacer()
             
@@ -134,15 +137,18 @@ struct FocusRegistrationView: View {
             
             Spacer()
         }
-        .textFieldStyle(RoundedBorderTextFieldStyle())
         .padding(EdgeInsets(top: 10, leading: 17, bottom: 5, trailing: 17))
         .navigationTitle("Registrar foco")
     }
 }
 
-//struct FocusRegistrationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let focused: [Pin] = []
-//        FocusRegistrationView(focusPoints: Binding.constant(focused))
-//    }
-//}
+struct FocusRegistrationView_Previews: PreviewProvider {
+    static var previews: some View {
+        let focused: [Pin] = []
+        NavigationView {
+            FocusRegistrationView(focusPoints: Binding.constant(focused), isViewActive: Binding.constant(true))
+        }
+        .environment(\.colorScheme, .dark)
+        
+    }
+}
