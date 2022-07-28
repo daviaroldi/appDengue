@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OversigthOptionsView: View {
     let selectedoption: [OversightModel]
+    let descriptionTitle: String
     
     var body: some View {
         ScrollView(.vertical) {
@@ -44,7 +45,7 @@ struct OversigthOptionsView: View {
             .padding(8)
 
         }
-        .navigationTitle("Guia de inspeção")
+        .navigationTitle(Text(descriptionTitle).italic())
     }
 }
 
@@ -62,7 +63,7 @@ struct OversigthOptionsView_Previews: PreviewProvider {
             OversightModel(imageName: "piscina", name: "Piscina", description: "Mantenha a piscina sempre limpa. Use cloro para tratar a água e o filtro periodicamente. Caso estejam em desuso. Limpar uma vez por semana, Devem estar cobertas se não estiverem sendo usadas. Se estiverem vazias, colocar sal no ponto mais raso.")
         ]
         NavigationView{
-            OversigthOptionsView(selectedoption: oversightsurban)
+            OversigthOptionsView(selectedoption: oversightsurban, descriptionTitle: "Guia de inspeção - Urbano")
         }
         .environment(\.colorScheme, .dark)
     }

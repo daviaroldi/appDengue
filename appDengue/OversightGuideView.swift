@@ -50,7 +50,7 @@ struct OversightGuideView: View {
                 HStack(spacing: 20) {
                     
                     NavigationLink(
-                        destination: OversigthOptionsView(selectedoption: oversightsurban),
+                        destination: OversigthOptionsView(selectedoption: oversightsurban, descriptionTitle: "Urbano"),
                         label: {
                             VStack{
                                 Image("urban")
@@ -74,7 +74,7 @@ struct OversightGuideView: View {
 //                    Spacer()
                     
                     NavigationLink(
-                        destination: OversigthOptionsView(selectedoption: oversightsrural),
+                        destination: OversigthOptionsView(selectedoption: oversightsrural, descriptionTitle: "Rural"),
                         label: {
                             VStack {
                                 Image("rural")

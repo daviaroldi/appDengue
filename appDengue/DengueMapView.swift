@@ -19,6 +19,8 @@ struct DengueMapView: View {
     @State var isRegistrationViewActive: Bool = false
     
     @Binding var focusPoints : [Pin]
+    
+    @State var isLocationDisable: Bool = false
 
     var body: some View {
         VStack{
@@ -26,45 +28,46 @@ struct DengueMapView: View {
                 Map(coordinateRegion: $managerDelegate.region, interactionModes: .all, showsUserLocation: true, annotationItems: focusPoints) { focusPoint in
                     MapAnnotation(coordinate: focusPoint.location.coordinate) {
                         Circle()
-                            .stroke(Color.red, lineWidth: 1)
-                            .background(Color.red.opacity(0.5))
+                            .stroke(focusPoint.getSeverityColor(), lineWidth: 1)
+                            .background(focusPoint.getSeverityColor().opacity(focusPoint.severity == .focus ? 0.7 : 0.3))
                             .frame(width: 44, height: 44)
                             .clipShape(Circle())
                     }
+                    
 
                 }.edgesIgnoringSafeArea(.all)
-                
-                NavigationLink(
-                    destination: FocusRegistrationView(focusPoints: self._focusPoints, isViewActive: $isRegistrationViewActive)
-                        .environmentObject(managerDelegate),
-                    isActive: $isRegistrationViewActive,
-                    label: {
-                        Text("Registrar Foco")
-                            .font(.system(size:16))
-                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                            .foregroundColor(.white)
-                            .padding(15)
-                            .background(Color.orange)
-                                .clipShape(Capsule())
-                    })
-                    .padding()
+
+                Button(action: {
+                    isLocationDisable = managerDelegate.location == nil
+                    isRegistrationViewActive = !isLocationDisable
+                }, label: {
+                    Text("Registrar Foco")
+                        .font(.system(size:16))
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.white)
+                        .padding(15)
+                        .background(Color.orange)
+                            .clipShape(Capsule())
+                })
+                .padding()
+                .alert(isPresented: $isLocationDisable, content: {
+                    Alert(title: Text("Coordenadas geaograficas não disponvíveis\nPor favor tente reposicionar a localização"))
+                })
+
+                NavigationLink("", destination: FocusRegistrationView(focusPoints: self._focusPoints, isViewActive: $isRegistrationViewActive)
+                                .environmentObject(managerDelegate), isActive: $isRegistrationViewActive)
             }
 
         }.onAppear{
             manager.delegate = managerDelegate
         }
-//        .navigationBarItems(trailing: Button {
-//            self.isRegistrationViewActive.toggle()
-//        } label: {
-//            Text("Registrar Foco")
-//        })
     }
 }
 
 struct DengueMapView_Previews: PreviewProvider {
     static var focusPoints : [Pin] = [
-        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587)),
-        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
+        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587), severity: Severity.focus),
+        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587), severity: Severity.suspect)
     ]
     static var previews: some View {
         DengueMapView(focusPoints: .constant(focusPoints))

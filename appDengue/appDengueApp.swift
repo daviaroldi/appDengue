@@ -12,7 +12,7 @@ struct appDengueApp: App {
     var body: some Scene {
         WindowGroup {
             AppTabView()
-                .environment(\.colorScheme, .dark)
+                .preferredColorScheme(.dark)
         }
     }
 }

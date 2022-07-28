@@ -23,8 +23,10 @@ struct StaticTextView: View {
                 .disableAutocorrection(true)
                 .font(.callout)
                 .foregroundColor(Color.init(red: 130/255, green: 130/255, blue: 130/255))
+                .padding(.all, 6)
+                .overlay(RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.secondary).opacity(1))
         }
-        .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 }
 
