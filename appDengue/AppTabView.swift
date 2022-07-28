@@ -10,18 +10,10 @@ import CoreLocation
 
 struct AppTabView: View {
     @State var focusPoints: [Pin] = [
-        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587)),
-        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
+        Pin(location: CLLocation(latitude: -22.713531, longitude: -43.209587), severity: Severity.suspect),
+        Pin(location: CLLocation(latitude: -22.804531, longitude: -43.209587), severity: Severity.focus),
+        Pin(location: CLLocation(latitude: -22.603531, longitude: -43.209587), severity: Severity.focus)
     ]
-    
-//    init() {
-////        UITabBar.appearance().barTintColor = .red
-//        
-////        let appearance = UITabBarAppearance()
-////        appearance.configureWithDefaultBackground()
-////        appearance.backgroundColor = .black
-////        UITabBar.appearance().standardAppearance = appearance
-//    }
     
     var body: some View {
         TabView {

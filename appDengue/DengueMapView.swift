@@ -28,11 +28,12 @@ struct DengueMapView: View {
                 Map(coordinateRegion: $managerDelegate.region, interactionModes: .all, showsUserLocation: true, annotationItems: focusPoints) { focusPoint in
                     MapAnnotation(coordinate: focusPoint.location.coordinate) {
                         Circle()
-                            .stroke(Color.red, lineWidth: 1)
-                            .background(Color.red.opacity(0.5))
+                            .stroke(focusPoint.getSeverityColor(), lineWidth: 1)
+                            .background(focusPoint.getSeverityColor().opacity(focusPoint.severity == .focus ? 0.7 : 0.3))
                             .frame(width: 44, height: 44)
                             .clipShape(Circle())
                     }
+                    
 
                 }.edgesIgnoringSafeArea(.all)
 
@@ -61,22 +62,12 @@ struct DengueMapView: View {
             manager.delegate = managerDelegate
         }
     }
-    
-//    @ViewBuilder
-//    func defineDestination() -> some View {
-//        if !isLocationDisable {
-////            EmptyView()
-////        } else {
-//            FocusRegistrationView(focusPoints: self._focusPoints, isViewActive: $isRegistrationViewActive)
-//                .environmentObject(managerDelegate)
-//        }
-//    }
 }
 
 struct DengueMapView_Previews: PreviewProvider {
     static var focusPoints : [Pin] = [
-        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587)),
-        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587))
+        Pin(location: CLLocation(latitude: -21.903531, longitude: -43.209587), severity: Severity.focus),
+        Pin(location: CLLocation(latitude: -21.903521, longitude: -43.209587), severity: Severity.suspect)
     ]
     static var previews: some View {
         DengueMapView(focusPoints: .constant(focusPoints))

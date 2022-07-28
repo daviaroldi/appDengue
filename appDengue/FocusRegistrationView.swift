@@ -31,8 +31,6 @@ import CoreLocation
 
 struct FocusRegistrationView: View {
     @EnvironmentObject var managerDelegate: locationDelegate
-//    @Environment(\.location1) var location1
-//    @Environment(\.location2) var location2
     
     @Binding var focusPoints: [Pin]
     @Binding var isViewActive: Bool
@@ -41,9 +39,11 @@ struct FocusRegistrationView: View {
     private var loggedAgent: Agent = Agent(47)
     private let dateFormatter = DateFormatter()
     private var formattedDate: String = ""
+    private var focusSeverityNamesArray: [String] = Severity.getArraySeverityNames()
     
     @State private var focusPointAddress: String = ""
     @State private var focusPointDescription: String = ""
+    @State private var focusSeverityIndex: Int = 0
 
     init(focusPoints: Binding<[Pin]>, isViewActive: Binding<Bool>) {
         self._focusPoints = focusPoints
@@ -54,84 +54,105 @@ struct FocusRegistrationView: View {
     
     public var body: some View {
         VStack(alignment: .leading) {
-            StaticTextView(
-                label: "Registro do agente",
-                text: loggedAgent.id.description,
-                placeholder: "Id")
-            
-            StaticTextView(
-                label: "Data de registro",
-                text: dateFormatter.string(from: currentDate),
-                placeholder: "Data atual")
-//                .environment(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Key Path@*/\.sizeCategory/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.extraExtraLarge/*@END_MENU_TOKEN@*/)
-            
             Group {
-                Text("Passo 1:")
+                StaticTextView(
+                    label: "Registro do agente",
+                    text: loggedAgent.id.description,
+                    placeholder: "Id")
+                
+                StaticTextView(
+                    label: "Data de registro",
+                    text: dateFormatter.string(from: currentDate),
+                    placeholder: "Data atual")
+                
+                Group {
+                    Text("Passo 1:")
+                        .foregroundColor(.orange)
+                        .font(.body)
+                        .fontWeight(.bold)
+                    
+                    Text("Adicione o endereço")
+                        .foregroundColor(Color(red: 190/255, green: 190/255, blue: 190/255))
+                        .font(.body)
+                        .fontWeight(.bold)
+                }
+                
+                TextField("Endereço do foco", text: $focusPointAddress)
+                    .foregroundColor(Color(red: 150/255, green: 150/255, blue: 150/255))
+                    .font(.callout)
+                
+                Group {
+                    Text("Passo 2:")
+                        .foregroundColor(.orange)
+                        .font(.body)
+                        .fontWeight(.bold)
+                    
+                    Text("Severidade do foco")
+                        .foregroundColor(Color(red: 190/255, green: 190/255, blue: 190/255))
+                        .font(.body)
+                        .fontWeight(.bold)
+                }
+                
+                Picker(selection: $focusSeverityIndex, label: Text("")) {
+                    ForEach(0 ..< self.focusSeverityNamesArray.count) {
+                        Text(self.focusSeverityNamesArray[$0])
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                
+                Text("Passo 3:")
                     .foregroundColor(.orange)
                     .font(.body)
                     .fontWeight(.bold)
                 
-                Text("Adicione o endereço")
+                Text("Adicione uma descrição")
                     .foregroundColor(Color(red: 190/255, green: 190/255, blue: 190/255))
                     .font(.body)
                     .fontWeight(.bold)
-            }
-            
-            TextField("Endereço do foco", text: $focusPointAddress)
-                .foregroundColor(Color(red: 150/255, green: 150/255, blue: 150/255))
-                .font(.callout)
-            
-            Text("Passo 2:")
-                .foregroundColor(.orange)
-                .font(.body)
-                .fontWeight(.bold)
-            
-            Text("Adicione uma descrição")
-                .foregroundColor(Color(red: 190/255, green: 190/255, blue: 190/255))
-                .font(.body)
-                .fontWeight(.bold)
-            
+                
 
-            
-            TextEditor(text: $focusPointDescription)
-                .font(.callout)
-                .foregroundColor(Color(red: 150/255, green: 150/255, blue: 150/255))
-                .frame(height: 230)
-                .lineLimit(50)
-                .multilineTextAlignment(.leading)
-                .padding(4)
-                .overlay(RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.secondary).opacity(0.2))
-            
-            Spacer()
-            
-            HStack(alignment: .center) {
+                
+                TextEditor(text: $focusPointDescription)
+                    .font(.callout)
+                    .foregroundColor(Color(red: 150/255, green: 150/255, blue: 150/255))
+                    .frame(height: 230)
+                    .lineLimit(50)
+                    .multilineTextAlignment(.leading)
+                    .padding(4)
+                    .overlay(RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.secondary).opacity(0.2))
+                
                 Spacer()
-            
-                Button {
-                    //let newFocus = DengueFocus(1, focusPointAddress, currentDate, focusPointDescription, currentLocation)
-                    if(managerDelegate.location == nil) {
-                        return
-                    }
-                    
-                    focusPoints.append(Pin(location: managerDelegate.location!))
-                    isViewActive.toggle()
-                } label: {
-                    Text("Salvar")
-                        .fontWeight(.bold)
-                        .foregroundColor(.orange)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 8)
-                        .frame(maxWidth: 100)
-                        .background(
-                            Capsule()
-                                .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
-                        )
-                        .font(.headline)
-                }
-                .buttonStyle(PlainButtonStyle())
             }
             
+            Group {
+                HStack(alignment: .center) {
+                    Spacer()
+                
+                    Button {
+                        if(managerDelegate.location == nil) {
+                            return
+                        }
+                        
+                        focusPoints.append(Pin(location: managerDelegate.location!, severity: Severity.getSeverityByIndex(index: focusSeverityIndex)))
+                        isViewActive.toggle()
+                    } label: {
+                        Text("Salvar")
+                            .fontWeight(.bold)
+                            .foregroundColor(.orange)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .frame(maxWidth: 100)
+                            .background(
+                                Capsule()
+                                    .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
+                            )
+                            .font(.headline)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                }
+            }
+
             Spacer()
         }
         .textFieldStyle(RoundedBorderTextFieldStyle())

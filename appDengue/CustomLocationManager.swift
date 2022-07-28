@@ -46,5 +46,47 @@ class locationDelegate: NSObject,ObservableObject,CLLocationManagerDelegate{
 struct Pin : Identifiable {
     var id = UUID().uuidString
     var location : CLLocation
+    var severity : Severity
+    
+    func getSeverityColor() -> Color {
+        switch self.severity {
+        case Severity.focus:
+            return Color.red
+        case Severity.suspect:
+            return Color.yellow
+        default:
+            return Color.red
+        }
+    }
 }
 
+enum Severity {
+    case focus
+    case suspect
+    
+    func getName() -> String {
+        switch self {
+        case Severity.focus:
+            return "Com Foco"
+        case Severity.suspect:
+            return "Com Suspeita"
+        default:
+            return "Com Foco"
+        }
+    }
+    
+    static func getSeverityByIndex(index: Int) -> Severity {
+        switch index {
+        case 0:
+            return Severity.focus
+        case 1:
+            return Severity.suspect
+        default:
+            return Severity.focus
+        }
+    }
+    
+    static func getArraySeverityNames() -> [String] {
+        return [Severity.focus.getName(), Severity.suspect.getName()]
+    }
+}
