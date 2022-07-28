@@ -110,12 +110,19 @@ struct FocusRegistrationView: View {
             
                 Button {
                     //let newFocus = DengueFocus(1, focusPointAddress, currentDate, focusPointDescription, currentLocation)
-                    if(managerDelegate.location == nil) {
-                        return
+                    //let gotLocation = LocationHelper.ConvertAddressToLocation(targetAddress: focusPointAddress)
+                    //print("Found => \(gotLocation)")
+                    LocationHelper.ConvertAddressToLocation(targetAddress: focusPointAddress) { location in
+                        print("Found => \(location)")
+                        
+                        if(managerDelegate.location == nil) {
+                            return
+                        }
+                        
+                        focusPoints.append(Pin(location: managerDelegate.location!))
+                        //isViewActive.toggle()
                     }
                     
-                    focusPoints.append(Pin(location: managerDelegate.location!))
-                    isViewActive.toggle()
                 } label: {
                     Text("Salvar")
                         .fontWeight(.bold)
